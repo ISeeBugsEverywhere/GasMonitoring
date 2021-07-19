@@ -379,12 +379,12 @@ void dht_report()
     sensors_event_t event;
     dht.temperature().getEvent(&event);
     if (isnan(event.temperature)) {
-      Serial.println(F("REM:Error reading temperature!:REM:!"));
+      // Serial.println(F("REM:Error reading temperature!:REM:!"));
     //   while (1)
     //   {
     //       problems();
     //   }  
-        sens = sens +String("37.776")+"|";
+        sens = sens +String(TERR)+"|";
     }
     else {
        //Serial.print(F("Temperature: "));
@@ -396,12 +396,12 @@ void dht_report()
     // Get humidity event and print its value.
     dht.humidity().getEvent(&event);
     if (isnan(event.relative_humidity)) {
-      Serial.println(F("REM:Error reading humidity!:REM:!"));
+      // Serial.println(F("REM:Error reading humidity!:REM:!"));
     //   while (1)
     //   {
     //       problems();
     //   }  
-        sens = sens + "H"+String("99.9D ")+"|";
+        sens = sens + "H"+String(HERR)+"|";
     }
     else {
        //Serial.print(F("Humidity: "));
@@ -411,12 +411,12 @@ void dht_report()
     }
     dht1.humidity().getEvent(&event);
     if (isnan(event.relative_humidity)) {
-      Serial.println(F("REM:Error reading humidity!:REM:!"));
+      // Serial.println(F("REM:Error reading humidity!:REM:!"));
     //   while (1)
     //   {
     //       problems();
     //   }      
-      sens = sens +String("99.9D")+"|";
+      sens = sens +String(HERR)+"|";
     }
     else {
       sens = sens +String(event.relative_humidity)+"|";
@@ -444,9 +444,9 @@ void send_sensor_value()
         sensors_event_t event1;
         dht1.temperature().getEvent(&event1);
         if (isnan(event1.temperature)) {
-          Serial.println(F("REM: Error reading temperature! :REM:!"));
+          // Serial.println(F("REM: Error reading temperature! :REM:!"));
           problems();
-          T = T + (String)SENSOR+";"+String(999);
+          T = T + (String)SENSOR+";"+String(TERR);
         }
         else {
           T = T + (String)SENSOR+ ";" + String(event1.temperature);

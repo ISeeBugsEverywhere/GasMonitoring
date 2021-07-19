@@ -17,4 +17,8 @@
 #define DHTPIN9 9 //D9 digital, 9th pin for DHT11
 #define DHTTYPE22    DHT22
 #define DHTPIN10 10 //D10 digital, 10th pin for DHT22
+
+// for DHT errors:
+#define TERR -17.7
+#define HERR 99
 #endif
