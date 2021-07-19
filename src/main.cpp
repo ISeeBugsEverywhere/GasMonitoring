@@ -133,7 +133,12 @@ void get_cmd(/* arguments */) {
         {
             Serial.println(F("REM:PROGRAM START:REM:!"));
             Serial.println(cmd_recorded);
-            RISE = true;
+            WATCH = false;
+            CLOSED = true;
+            WAIT_1 = false;
+            WAIT_2 = false;
+            USE_O2 = false;
+            RISE = false;
             USE_C = false;
             //value to keep:
             gass_keep = (cmd_recorded[1]-48)*100 + (cmd_recorded[2]-48)*10+(cmd_recorded[3]-48);
@@ -169,6 +174,12 @@ void get_cmd(/* arguments */) {
         {
             //C kodas in use:
             Serial.println(F("REM:C mode: timers:REM:!"));
+            WATCH = false;
+            CLOSED = true;
+            WAIT_1 = false;
+            WAIT_2 = false;
+            USE_O2 = true;
+            RISE = false;
             USE_C = true;
             init_t = (100ul*(cmd_recorded[2]-48)+10ul*(cmd_recorded[3]-48)+(cmd_recorded[4]-48))*1000ul;//millisecs?
             open_t = 100*((cmd_recorded[5]-48)*10+(cmd_recorded[6]-48));//millisecs
@@ -233,21 +244,33 @@ void get_cmd(/* arguments */) {
           cmd_recorded[ii]=0;
           }
         }
-        if (cmd_recorded[0]== 'o' && ((cmd_recorded[1]-48) == 2))
+        if (cmd_recorded[0]== 'o' && ((cmd_recorded[1]-48) == 2) && (cmd_recorded[8]== 't'))
         {
             //o2 section:
+            //čia nėra laikų shutter'iui
             Serial.println(F("REM:O2 CASE:REM:!"));
             keep_o2 = (cmd_recorded[2]-48)*10.0+(cmd_recorded[3]-48)*1.0+(cmd_recorded[4]-48)*0.1+(cmd_recorded[5]-48)*0.01; //%
             o2_threshold = ((cmd_recorded[6]-48)*10.0+(cmd_recorded[7]-48)*1.0)/100.0; //between 0 and 1.0;
             o2_th = (2.0-o2_threshold) * keep_o2;
-            if (cmd_recorded[8] == '!')
+            //timings:
+            t_o2_watch = 100*((cmd_recorded[9]-48)*10+(cmd_recorded[10]-48));
+            t_o2_wait = 100*((cmd_recorded[11]-48)*10+(cmd_recorded[12]-48));
+            if (cmd_recorded[13] == '!')
             {
                 Serial.println(F("REM:O2 OK, KEEP O2 AT:REM:!"));
                 Serialprintln(keep_o2);
                 Serial.println(F("REM:Threshold:REM:!"));
                 Serialprintln(o2_threshold);
                 Serialprintln(o2_th);
+                Serial.println(F("REM:TIMERS:REM:!"));
+                Serialprintln(t_o2_watch);
+                Serialprintln(t_o2_wait);
                 Serial.println(F("REM:END:REM:!"));
+                RISE = false;
+                WATCH = false;
+                CLOSED = true;
+                WAIT_1 = false;
+                WAIT_2 = false;
                 USE_O2 = true;
             }
             else
@@ -357,10 +380,11 @@ void dht_report()
     dht.temperature().getEvent(&event);
     if (isnan(event.temperature)) {
       Serial.println(F("REM:Error reading temperature!:REM:!"));
-      while (1)
-      {
-          problems();
-      }  
+    //   while (1)
+    //   {
+    //       problems();
+    //   }  
+        sens = sens +String("37.776")+"|";
     }
     else {
        //Serial.print(F("Temperature: "));
@@ -373,10 +397,11 @@ void dht_report()
     dht.humidity().getEvent(&event);
     if (isnan(event.relative_humidity)) {
       Serial.println(F("REM:Error reading humidity!:REM:!"));
-      while (1)
-      {
-          problems();
-      }  
+    //   while (1)
+    //   {
+    //       problems();
+    //   }  
+        sens = sens + "H"+String("99.9D ")+"|";
     }
     else {
        //Serial.print(F("Humidity: "));
@@ -387,11 +412,11 @@ void dht_report()
     dht1.humidity().getEvent(&event);
     if (isnan(event.relative_humidity)) {
       Serial.println(F("REM:Error reading humidity!:REM:!"));
-      while (1)
-      {
-          problems();
-      }      
-      
+    //   while (1)
+    //   {
+    //       problems();
+    //   }      
+      sens = sens +String("99.9D")+"|";
     }
     else {
       sens = sens +String(event.relative_humidity)+"|";

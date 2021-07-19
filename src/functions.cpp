@@ -111,7 +111,7 @@ void problems()
   digitalWrite(LED_WATCH, HIGH);
   digitalWrite(LED_STAGE3, HIGH);
   digitalWrite(LED_RISE, HIGH);
-  delay(1000);
+  delay(200);
   digitalWrite(LED_SHUTTER, HIGH);
   digitalWrite(LED_WATCH, LOW);
   digitalWrite(LED_STAGE3, LOW);

@@ -1,0 +1,64 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/include",
+                "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/src",
+                "/home/egis/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/.pio/libdeps/nanoatmega328/BMP180",
+                "/home/egis/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/.pio/libdeps/nanoatmega328/DHT sensor library",
+                "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/.pio/libdeps/nanoatmega328/Adafruit Unified Sensor",
+                "/home/egis/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/egis/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
+                "/home/egis/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/egis/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/home/egis/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/home/egis/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/include",
+                    "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/src",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/.pio/libdeps/nanoatmega328/BMP180",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/.pio/libdeps/nanoatmega328/DHT sensor library",
+                    "/home/egis/Dropbox/Workspace/ArduinoCodes/GAS_MONITORING/.pio/libdeps/nanoatmega328/Adafruit Unified Sensor",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/home/egis/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/home/egis/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50101",
+                "ARDUINO_AVR_NANO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/home/egis/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
